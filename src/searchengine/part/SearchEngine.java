@@ -1,4 +1,5 @@
 package searchengine.part;
+
 import java.io.File;
 import java.io.IOException;
 
@@ -16,23 +17,25 @@ import configFile.part.DataFile;
 
 public class SearchEngine {
 	private DataFile dataFile = new DataFile();
-    private IndexSearcher searcher = null;
-    private QueryParser parser = null;
-    
-    /** Creates a new instance of SearchEngine */
-    public SearchEngine() throws IOException {
-        searcher = new IndexSearcher(DirectoryReader.open(FSDirectory.open(new File(dataFile.SEARCH_FOLDER_PATH))));
-        parser = new QueryParser("term", new ThaiAnalyzer());
-    }
-    
-    public TopDocs performSearch(String queryString, int n)
-    throws IOException, ParseException {
-        Query query = parser.parse(queryString);        
-        return searcher.search(query, n);
-    }
+	private IndexSearcher searcher = null;
+	private QueryParser parser = null;
 
-    public Document getDocument(int docId)
-    throws IOException {
-        return searcher.doc(docId);
-    }
+	/** Creates a new instance of SearchEngine */
+	public SearchEngine() throws IOException {
+//		searcher = new IndexSearcher(DirectoryReader.open(FSDirectory.open(new File(dataFile.SEARCH_FOLDER_PATH))));
+//		parser = new QueryParser("term", new ThaiAnalyzer());
+		ClassLoader classLoader = getClass().getClassLoader();
+		File file = new File(classLoader.getResource(dataFile.FOLDER_NAME_OUT_INDEX).getFile());
+		searcher = new IndexSearcher(DirectoryReader.open(FSDirectory.open(file)));
+		parser = new QueryParser("term", new ThaiAnalyzer());
+	}
+
+	public TopDocs performSearch(String queryString, int n) throws IOException, ParseException {
+		Query query = parser.parse(queryString);
+		return searcher.search(query, n);
+	}
+
+	public Document getDocument(int docId) throws IOException {
+		return searcher.doc(docId);
+	}
 }

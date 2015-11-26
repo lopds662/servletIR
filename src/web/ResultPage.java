@@ -7,6 +7,7 @@ import javax.servlet.ServletException;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+import javax.servlet.http.HttpSession;
 
 import org.apache.lucene.document.Document;
 import org.apache.lucene.queryparser.classic.ParseException;
@@ -51,7 +52,8 @@ public class ResultPage extends HttpServlet {
 		out.println("<title>ผลลัพธ์</title>");
 		out.println("</head>");
 		out.println("<body>");
-
+		
+		String temp="Start";
 		if (request.getParameter("query") != null) {
 			query = request.getParameter("query");
 		}
@@ -62,25 +64,25 @@ public class ResultPage extends HttpServlet {
 			if (hits.length == 0) {
 				outStr = "Not Found.";
 			} else {
-				outStr = "Your query is found in " + hits.length  + " docs.<p>";
+				outStr = "Your query is found in " + hits.length  + " docs.<br>";
 				for (int i = 0; i < hits.length; i++) {
 					Document doc = se.getDocument(hits[i].doc);
 					
 					String docNameFull = doc.get("doc");
-					String docName = docNameFull.substring(7, docNameFull.length());
-					outStr = outStr + "<p>" + "Docname:" + docName +"::  " + doc.get("term") + "     ::score " + " (" + hits[i].score + ")";
+					String docName = docNameFull.substring(5, docNameFull.length());
+					outStr = outStr + "<br>" + "Docname: " + docName +"  ::  " + doc.get("term") 
+					+ "           ::score " + " (" + hits[i].score + ")";
 				}
 			}
 		} catch (ParseException e) {
-			// TODO Auto-generated catch block
 			e.printStackTrace();
 		}
 		// out.println("<p> Your query is "+request.getParameter("query"));
 		out.println("ผลลัพธ์การค้นหาคำว่า  \"" + query + "\"");
-		out.println("<p>" + outStr);
-//		out.println("<p> <a href =" + "\"http://localhost:8080/testServlet/FirstServletClass" + "\"+ method=GET>"
+//		out.println("<br>" + temp);
+//		out.println("<p> <a href =" + "\"http://localhost:8080/testServlet/DataPage" + "\"+ method=GET>"
 //				+ "Heyper link to back" + "</a>");
-
+		out.println("<br>" + outStr);
 		out.println("<form action=http://localhost:8080/testServlet/HomePage method=GET>");
 		out.println("<CENTER><input type=submit value=Return Search Page>" + "</from>");
 
@@ -96,6 +98,8 @@ public class ResultPage extends HttpServlet {
 			throws ServletException, IOException {
 		// TODO Auto-generated method stub
 		doGet(request, response);
+		HttpSession session = request.getSession();
+		session.setAttribute("docName", "temp");
 	}
 
 }

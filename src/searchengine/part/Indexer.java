@@ -1,4 +1,5 @@
 package searchengine.part;
+
 import java.io.BufferedReader;
 import java.io.File;
 import java.io.FileReader;
@@ -19,7 +20,7 @@ import configFile.part.DataFile;
 public class Indexer {
 	/** Creates a new instance of Indexer */
 	private DataFile dataFile = new DataFile();
-	
+
 	File folder = new File(dataFile.FOLDER_NAME_IN_DATA);
 	File[] listFileName = folder.listFiles();
 

@@ -8,16 +8,14 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
-/**
- * Servlet implementation class FirstServletClass
- */
-public class HomePage extends HttpServlet {
+public class DataPage extends HttpServlet{
+	
 	private static final long serialVersionUID = 1L;
 
 	/**
 	 * @see HttpServlet#HttpServlet()
 	 */
-	public HomePage() {
+	public DataPage() {
 		super();
 		// TODO Auto-generated constructor stub
 	}
@@ -40,7 +38,7 @@ public class HomePage extends HttpServlet {
 		out.println("<head>");
 		out.println("</head>");
 		out.println("<body>");
-		out.println("‡∏£‡∏∞‡∏ö‡∏ö‡∏Ñ‡πâ‡∏ô‡∏´‡∏≤‡∏Ç‡πâ‡∏≠‡∏°‡∏π‡∏•‡πÄ‡∏£‡∏∑‡πà‡∏≠‡∏á‡∏û‡∏£‡∏∞‡∏≠‡∏†‡∏±‡∏¢‡∏°‡∏ì‡∏µ ");
+		out.println("√–∫∫§ÈπÀ“¢ÈÕ¡Ÿ≈‡√◊ËÕßæ√–Õ¿—¬¡≥’ ");
 		out.println("     by csir <br>  ");
 //		out.println("<p> make change one line");
 		out.println("<form action=http://localhost:8080/testServlet/ResultPage method=GET><br>"
@@ -60,5 +58,6 @@ public class HomePage extends HttpServlet {
 		// TODO Auto-generated method stub
 		doGet(request, response);
 	}
+
 
 }

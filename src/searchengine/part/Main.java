@@ -1,7 +1,4 @@
 package searchengine.part;
-import org.apache.lucene.document.Document;
-import org.apache.lucene.search.ScoreDoc;
-import org.apache.lucene.search.TopDocs;
 
 public class Main {
 
