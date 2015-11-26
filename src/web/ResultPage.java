@@ -64,14 +64,30 @@ public class ResultPage extends HttpServlet {
 			if (hits.length == 0) {
 				outStr = "Not Found.";
 			} else {
+//				outStr = "Your query is found in " + hits.length  + " docs.<br>";
+//				for (int i = 0; i < hits.length; i++) {
+//					Document doc = se.getDocument(hits[i].doc);
+//					
+//					String docNameFull = doc.get("doc");
+//					String docName = docNameFull.substring(5, docNameFull.length());
+//					outStr = outStr + "<br>" + "Docname: " + docName +"  ::  " + doc.get("term") 
+//					+ "           ::score " + " (" + hits[i].score + ")";
+//				}
+//				
+				out.println("ผลลัพธ์การค้นหาคำว่า  \"" + query + "\"");
 				outStr = "Your query is found in " + hits.length  + " docs.<br>";
+				out.println("<br>" + outStr);
+				outStr="";
 				for (int i = 0; i < hits.length; i++) {
 					Document doc = se.getDocument(hits[i].doc);
 					
 					String docNameFull = doc.get("doc");
 					String docName = docNameFull.substring(5, docNameFull.length());
-					outStr = outStr + "<br>" + "Docname: " + docName +"  ::  " + doc.get("term") 
-					+ "           ::score " + " (" + hits[i].score + ")";
+					outStr = outStr + "<br>" + "Docname: " + docName +"  ::  "+ 
+					"score " + " (" + hits[i].score + ")";
+					out.println("<p> <a href =" + "\"http://localhost:8080/testServlet/DataPage?docName="+ outStr + "\"+ method=GET>"
+							+ outStr + "</a>");
+					outStr="";
 				}
 			}
 		} catch (ParseException e) {
@@ -98,8 +114,6 @@ public class ResultPage extends HttpServlet {
 			throws ServletException, IOException {
 		// TODO Auto-generated method stub
 		doGet(request, response);
-		HttpSession session = request.getSession();
-		session.setAttribute("docName", "temp");
 	}
 
 }

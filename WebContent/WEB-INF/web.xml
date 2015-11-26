@@ -29,4 +29,14 @@
     <servlet-name>ResultPage</servlet-name>
     <url-pattern>/ResultPage</url-pattern>
   </servlet-mapping>
+  <servlet>
+    <description></description>
+    <display-name>DataPage</display-name>
+    <servlet-name>DataPage</servlet-name>
+    <servlet-class>web.DataPage</servlet-class>
+  </servlet>
+  <servlet-mapping>
+    <servlet-name>DataPage</servlet-name>
+    <url-pattern>/DataPage</url-pattern>
+  </servlet-mapping>
 </web-app>
