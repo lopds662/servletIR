@@ -3,7 +3,6 @@ package web;
 import java.io.BufferedReader;
 import java.io.File;
 import java.io.FileInputStream;
-import java.io.FileReader;
 import java.io.IOException;
 import java.io.InputStreamReader;
 import java.io.PrintWriter;
@@ -49,17 +48,28 @@ public class DataPage extends HttpServlet{
 		out.println("<head>");
 		out.println("</head>");
 		out.println("<body>");
+		out.println("<div align=Right>  ส่วนหนึ่งของรายวิชา 01418351@CSKU</div>");
 		out.println("ระบบค้นหาข้อมูลเรื่องพระอภัยมณี ");
 		out.println("     by csir <br>  ");
-		String[] docNameList = String.valueOf(request.getParameter("docName")).split(" ");
-		String docName = docNameList[1];
+		String docText = null;
+		if (request.getParameter("docName") != null) {
+			docText = request.getParameter("docName");
+		}
+		docText = (docText == null) ? null : new String(docText.getBytes("iso-8859-1"), "UTF-8");
+		System.out.println("This is docText " + docText);
+//		String[] docNameList = String.valueOf(request.getParameter("docName")).split(" ");
+//		for (int i = 0; i < docNameList.length; i++){
+//			System.out.println(">>>>>>>>>>>>>> " + docNameList[i]);
+//		}
+//		String docName = docNameList[0];
+		String docName = docText;
 		String outData = readFile(docName);
 		
 		out.println("<br>DocName is: "+docName);
 		out.println("<br> "+outData);
 		out.println("<br><button onclick=goBack()>Go Back</button>");
-		  out.println("<script>function goBack() {window.history.back();}</script>");
-		  out.println("</body>");
+		out.println("<script>function goBack() {window.history.back();}</script>");  
+		out.println("</body>");
 		out.println("</html>");
 	}
 
@@ -74,7 +84,7 @@ public class DataPage extends HttpServlet{
 	}
 	public String readFile(String fileName) throws IOException {
 
-		String data = "";
+		String data = "<pre>";
 		ClassLoader classLoader = getClass().getClassLoader();
 		File file = new File(classLoader.getResource("data\\"+fileName).getFile());
 		reader = new BufferedReader(new InputStreamReader(new FileInputStream(file),"UTF-8"));
@@ -82,7 +92,8 @@ public class DataPage extends HttpServlet{
 			System.out.println(">>"+ i);
 			data = data + "<br>" + i;
 		}
-		System.out.println(data);
+		data.replaceAll("\t", "    ");
+		data = data + "</pre>";
 		return data;
 	}
 

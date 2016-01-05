@@ -8,10 +8,13 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
+import configFile.part.DataFile;
+
 /**
  * Servlet implementation class FirstServletClass
  */
 public class HomePage extends HttpServlet {
+	DataFile dataFile = new DataFile();
 	private static final long serialVersionUID = 1L;
 
 	/**
@@ -40,11 +43,11 @@ public class HomePage extends HttpServlet {
 		out.println("<head>");
 		out.println("</head>");
 		out.println("<body>");
-		out.println("ระบบค้นหาข้อมูลเรื่องพระอภัยมณี ");
-		out.println("     by csir <br>  ");
-//		out.println("<p> make change one line");
-		out.println("<form action=http://localhost:8080/testServlet/ResultPage method=GET><br>"
-				+ "<b> Ener your query: </b> <input type=text name=query size=40><p> </p>"
+		out.println("<div align=Right>  ส่วนหนึ่งของรายวิชา 01418351@CSKU</div>");
+		out.println("<br><CENTER>ระบบค้นหาข้อมูลเรื่องพระอภัยมณี  ");
+		out.println("     by csir58 <br> <CENTER> ");
+		out.println("<form action="+dataFile.WEB_PATH+"/ResultPage method=GET><br>"
+				+ "<b> คำที่ต้องการค้นหา  </b> <input type=text name=query size=40><p> </p>"
 				+ "<input type=submit value=Submit Query>" 
 				+ "<input type=reset value=Reset Form> </form>");
 		out.println("</body>");

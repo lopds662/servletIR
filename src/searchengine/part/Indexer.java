@@ -20,11 +20,12 @@ import configFile.part.DataFile;
 public class Indexer {
 	/** Creates a new instance of Indexer */
 	private DataFile dataFile = new DataFile();
-
-	File folder = new File(dataFile.FOLDER_NAME_IN_DATA);
-	File[] listFileName = folder.listFiles();
-
+	
+	File folder;
+	File[] listFileName;
 	public Indexer() {
+		folder = new File(dataFile.FOLDER_NAME_IN_DATA);
+		listFileName = folder.listFiles();
 	}
 
 	private IndexWriter indexWriter = null;
@@ -63,10 +64,12 @@ public class Indexer {
 		//
 		// Index all Accommodation entries
 		//
+		System.out.println(listFileName.length + "ssdads" );
 		for (int i = 0; i < listFileName.length; i++) {
 			String name = String.valueOf(listFileName[i]);
 			String data = readFile(name);
 			indexPoem(data, name);
+			System.out.println("In loop Lasts");
 		}
 		// Hotel[] hotels = HotelDatabase.getHotels();
 		// for(Hotel hotel : hotels) {

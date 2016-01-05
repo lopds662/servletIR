@@ -28,6 +28,7 @@ public class Main {
 //			}
 //			System.out.println("performSearch done");
 		} catch (Exception e) {
+			System.out.println(e);
 			System.out.println("Exception caught.\n");
 		}
 

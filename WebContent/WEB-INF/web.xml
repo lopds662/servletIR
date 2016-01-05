@@ -4,7 +4,6 @@
   <welcome-file-list>
     <welcome-file>index.html</welcome-file>
     <welcome-file>index.htm</welcome-file>
-    <welcome-file>index.jsp</welcome-file>
     <welcome-file>default.html</welcome-file>
     <welcome-file>default.htm</welcome-file>
     <welcome-file>default.jsp</welcome-file>
@@ -17,7 +16,7 @@
   </servlet>
   <servlet-mapping>
     <servlet-name>HomePage</servlet-name>
-    <url-pattern>/HomePage</url-pattern>
+    <url-pattern>/</url-pattern>
   </servlet-mapping>
   <servlet>
     <description></description>
@@ -38,5 +37,15 @@
   <servlet-mapping>
     <servlet-name>DataPage</servlet-name>
     <url-pattern>/DataPage</url-pattern>
+  </servlet-mapping>
+   <servlet>
+    <description></description>
+    <display-name>NextPage</display-name>
+    <servlet-name>NextPage</servlet-name>
+    <servlet-class>web.NextPage</servlet-class>
+  </servlet>
+  <servlet-mapping>
+    <servlet-name>NextPage</servlet-name>
+    <url-pattern>/NextPage</url-pattern>
   </servlet-mapping>
 </web-app>
